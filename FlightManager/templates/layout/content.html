@@ -1,0 +1,119 @@
+<!-- content -->
+<div class="content">
+    <span class="content-header">
+       Khám phá các chuyến bay phổ biến nhất
+    </span>
+
+    <div class="flex content-subHeader">
+        <span class="subHeader-text">
+            Du lịch với chi phí thấp nhất từ chúng tôi
+        </span>
+<!--        <span class="subHeader-link">-->
+<!--            <a href="#">Xem thêm các ưu đãi</a>-->
+<!--        </span>-->
+    </div>
+
+    <div class="row">
+        {% for f in flight %}
+        <div class="col-md-4 col-sm-12" style="padding:1rem;">
+            <div class="image-wrapper">
+                <img class="images" src="{{ f.airlines.from_airport.image }}" alt="f.airlines.name">
+            </div>
+
+            <div class="details">
+                <div class="details-header">
+                    <span>{{ f.airlines.from_airport.location }}</span>
+                </div>
+
+                <div>
+                    <div class="flex details-items">
+                        <div class="img-icons">
+                            <img src="{{ url_for('static', filename='images/VJ.png') }}" alt="VietJet Air">
+                        </div>
+                        <div>
+                            <span class="infor">Ngày đi: {{ f.departing_at }}</span>
+                            <br>
+                            <span>{{ f.airlines.from_airport.name }}</span>
+                        </div>
+<!--                        <div class="text">-->
+<!--                            <span>Bay thẳng</span>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex prices">
+                <span>Giá chỉ từ 500.000 ₫</span>
+                <i class="fas fa-plane-departure"></i>
+            </div>
+            <div>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                Đặt vé ngay
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Đặt chuyến bay</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="booking-search-form">
+                                    <form action="/" method="post">
+                                        <div class="flex flex-wrap justify-start booking-form">
+                                            <div class="flex type-ticket"></div>
+                                            <div class="booking-form-content">
+                                                <div class="places">
+                                                    <div class="from-place">
+                                                        <span>Từ</span>
+                                                        <input type="text" class="form-control" list="f_airports"
+                                                               name="from" placeholder="Chọn nơi đi...">
+                                                        <datalist id="f_airports">
+                                                            {% for a in airports %}
+                                                            <option value="{{ a.location }}">
+                                                            {% endfor %}
+                                                        </datalist>
+                                                    </div>
+
+                                                    <div class="to-place">
+                                                        <span>Đến</span>
+                                                        <input type="text" class="form-control" list="t_airports"
+                                                               name="to" placeholder="Chọn nơi đến...">
+                                                        <datalist id="t_airports">
+                                                            {% for a in airports %}
+                                                            <option value="{{ a.location }}">
+                                                            {% endfor %}
+                                                        </datalist>
+                                                    </div>
+                                                </div>
+                                                <div class="date">
+                                                    <div class="from-date">
+                                                        <span>Ngày đi</span>
+                                                        <input type="date" id="from_date" name="from_date"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="block curser-pointer flex flex-nowrap btn-search">
+                                    Tìm kiếm chuyến bay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
+</div>

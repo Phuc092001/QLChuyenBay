@@ -1,0 +1,120 @@
+<!--booking for customer-->
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<section class="booking">
+    <span class="content-header">Lên lịch đặt ngay một chiếc vé ưng ý nào</span>
+    <div class="booking-search-form">
+        <form action="/" method="post">
+            <div class="flex flex-wrap justify-start booking-form">
+                <div class="flex type-ticket">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="khuhoi" name="optradio"
+                                   value="khứ hồi" checked>Khứ hồi
+                        <label class="form-check-label" for="khuhoi"></label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="motchieu" name="optradio"
+                                   value="một chiều">Một chiều
+                        <label class="form-check-label" for="motchieu"></label>
+                    </div>
+
+                    <div>
+                        <label for="rank">Hạng vé</label>
+                        <select name="rank" id="rank">
+                            <option value="1">Hạng 1</option>
+                            <option value="2">Hạng 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex justify-start booking-form-content">
+                    <div class="flex flex-row places">
+                        <div class="flex flex-wrap from-place">
+                            <span>Từ</span>
+                            <input type="text" class="form-control" list="f_airports" name="from"
+                                    placeholder="Chọn nơi đi...">
+                            <datalist id="f_airports">
+                                {% for a in airports %}
+                                    <option value="{{ a.location }}">
+                                {% endfor %}
+                            </datalist>
+                        </div>
+
+                        <div class="flex flex-wrap to-place">
+                            <span>Đến</span>
+                            <input type="text" class="form-control" list="t_airports" name="to"
+                                   placeholder="Chọn nơi đến...">
+                            <datalist id="t_airports">
+                                {% for a in airports %}
+                                    <option value="{{ a.location }}">
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="flex flex-row date">
+                        <div class="flex flex-wrap from-date">
+                            <span>Ngày đi</span>
+                            <input type="date" id="from_date" name="from_date" class="form-control">
+                        </div>
+                        <div class="flex flex-wrap to-date">
+                            <span>Ngày về</span>
+                            <input type="date" id="to_date" name="to_date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap bt-search">
+                        <button class="block curser-pointer flex flex-nowrap btn-search">Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container mt-3">
+        <img src="{{ url_for('static', filename='images/layout_booking.jpg') }}" alt="QC"
+             class="mx-auto d-block" style="width:100%">
+    </div>
+    <span class="content-header">Các chuyến bay với giá siêu ưu đãi từ Afforda</span>
+    <div class="row" style="margin-top:20px">
+        <div class="places">
+            <div class="col-sm-4">
+                <span>Từ</span>
+                <input type="text" class="form-control" id="from" list="f_airports" name="from"
+                       placeholder="Chọn nơi đi..." onkeyup="filter_details_ticket()">
+                <datalist id="fr_airports">
+                    {% for a in airports %}<option value="{{ a.location }}">{% endfor %}
+                </datalist>
+            </div>
+
+        </div>
+    </div>
+    <div class="flex flex-wrap flex-row" style="margin-top:20px; width:100%">
+        <table class="table border-table">
+            <thead class="header-table">
+                <tr>
+                <th>Tuyến bay</th>
+                <th>Máy bay</th>
+                <th>Thời gian khởi hành</th>
+                <th>Thời gian kết thúc</th>
+            </tr>
+            </thead>
+            <tbody id="filter_flight" >
+                {% for i in range(flights_num)%}
+                <tr>
+                    <td>{{flights[i].airlines.name}}</td>
+                    <td>{{flights[i].plane_id}}</td>
+                    <td>{{flights[i].departing_at}}</td>
+                    <td>{{flights[i].arriving_at}}</td>
+                    <td>
+                        <a href="/flight/{{flights[i].id}}"
+                           class="block curser-pointer flex flex-nowrap btn-choose">Chọn</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/bookticket.js') }}"></script>
+
+{% endblock %}

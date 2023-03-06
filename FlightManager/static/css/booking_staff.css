@@ -1,0 +1,20 @@
+.form-infocustomer {
+    width: 45%;
+    margin-top: 20px;
+}
+
+.form-infocustomer span {
+    color: #055c81;
+    font-size: 20px;
+}
+
+.subHeader {
+    margin-bottom: 1rem;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+.httt {
+    margin-bottom: 2rem;
+}
+

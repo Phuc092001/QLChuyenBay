@@ -1,0 +1,44 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h1 class="text-center text-success">GIỎ HÀNG</h1>
+
+{% if 'cart' in session and session['cart'] %}
+<table class="table">
+    <tr>
+        <th>Mã vé máy bay</th>
+        <th>Họ tên khách hàng</th>
+        <th>Tuyến bay</th>
+        <th>Thời gian khởi hành</th>
+        <th>Hạng vé</th>
+        <th>Ghế</th>
+        <th>Giá tiền</th>
+        <th></th>
+    </tr>
+    {% for c in session['cart'].values() %}
+    <tr id="cart{{ c.id }}">
+        <td>{{ c.id }}</td>
+        <td>{{ c.name }}</td>
+        <td>{{ c.from }} - {{ c.to }}</td>
+        <td>{{ c.fdate }}</td>
+        <td>{{ c.rank }}</td>
+        <td>{{ c.seat }}</td>
+        <td>{{ c.price }} VNĐ</td>
+<!--        <td>-->
+<!--            <input type="button" value="Xóa" onclick="deleteCart({{ c.id }})" class="btn btn-danger" />-->
+<!--        </td>-->
+    </tr>
+    {% endfor %}
+</table>
+
+<div>
+    {% if current_user.is_authenticated %}
+    <input type="button" value="Thanh toán" onclick="pay()" class="btn btn-success" />
+    {% else %}
+    <p>Vui lòng <a href="/login?next=/cart">đăng nhập</a> để thanh toán!</p>
+    {% endif %}
+</div>
+{% else %}
+<p>Không có sản phẩm nào trong giỏ!</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h1 class="text-center text-success">Xác nhận thông tin đặt vé</h1>
+
+<div class="detail-flight">
+    <div class="row">
+        <div class="col-md-8 col-sm-6">
+            <span class="content-header">Thông tin khách hàng</span>
+            <div class="form-infocustomer">
+                <form action="/" method="post">
+                    <div>
+                        <span>Họ và tên khách hàng</span>
+                        <input type="text" required name="name" placeholder="Nhập tên khách hàng...">
+                    </div>
+                    <div>
+                        <span>Ngày tháng năm sinh</span>
+                        <input type="date" id="bday" name="birthday" class="form-control" style="width: 100%">
+                    </div>
+                    <div>
+                        <span>Điện thoại</span>
+                        <input type="text" required name="sdt" placeholder="Nhập số điện thoại...">
+                    </div>
+                    <div>
+                        <span>Email</span>
+                        <input type="text" id="mail" required name="email" placeholder="Nhập email...">
+                    </div>
+                    <div class="httt">
+                        <span>Hình thức thanh toán</span>
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" id="tienmat" name="inlineRadioOptions"
+                                    value="Tiền mặt" checked>Thanh toán tiền mặt
+                            <label class="form-check-label" for="tienmat"></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" id="visa" name="inlineRadioOptions"
+                                    value="VISA">Thanh toán VISA
+                            <label class="form-check-label" for="visa"></label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card">
+                <img src="{{ flight.airlines.from_airport.image }}" class="img-fluid"
+                        alt="{{ flight.airlines.from_airport.image }}" />
+            </div>
+            <div class="card-body">
+                <h1>{{ flight.name }}</h1>
+                <p>Tuyến bay: {{ flight.airlines.name }}</p>
+                <p>Khởi hành tại: {{ flight.airlines.from_airport.name }}</p>
+                <p>Thời gian đi: {{ flight.departing_at }}</p>
+                <p>Thời gian đến: {{ flight.arriving_at }}</p>
+                <p>Hãng bay: {{ flight.planes.manufacturer }}</p>
+
+                {%if Flight_AirportMedium  %}
+                    {% for m in Flight_AirportMedium %}
+                        <hr>
+                        <p>Tên trạm dừng: {{m}}</p>
+                        <p>Dừng tại: {{m.airports.name}}</p>
+                        <p>Thông báo: {{m.description}}</p>
+                    {% endfor %}
+                {%else%}
+                    <p>Bay thẳng </p>
+                {% endif%}
+                <hr>
+                <form>
+                    <div>
+                        <label for="rank">Hạng vé:</label>
+                        <select name="rank" id="rank">
+                            <option value="1">Hạng 1</option>
+                            <option value="2">Hạng 2</option>
+                        </select>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-md-4">
+                            <span>Người lớn</span>
+                            <input type="number" class="form-control" name="adult"
+                                    value="1" min="0" max="10" step="1" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-4">
+                            <span>Trẻ em</span>
+                            <span class="sub-header">(2 - 12 tuổi)</span>
+                            <input type="number" class="form-control" name="children"
+                                    value="0" min="0" max="10" step="1" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-4">
+                            <span>Em bé</span>
+                            <span class="sub-header">(< 2 tuổi)</span>
+                            <input type="number" class="form-control" name="infant"
+                                    value="0" min="0" max="10" step="1" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <button class="block curser-pointer flex flex-nowrap btn-choose" style="height: 35px">ĐẶT MUA</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

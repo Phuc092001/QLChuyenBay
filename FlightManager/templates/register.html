@@ -1,0 +1,79 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<section class="flex discovery">
+    <form method="post" class="log-in">
+        <div class="header-content">
+            <h1>ĐĂNG KÝ TÀI KHOẢN</h1>
+        </div>
+        {% if err_msg %}
+        <div class="alert alert-danger">
+            {{ err_msg }}
+        </div>
+        {% endif %}
+        <div class="log-in-form"  style="height: 65%;">
+            <div class="flex form">
+                <div class="input-form">
+                    <div class="name">
+                        <p style="margin-bottom: 0px;">Nhập họ và tên</p>
+                        <input type="text" required name="name" placeholder="Nhập tên của bạn...">
+                    </div>
+                    <div class="username">
+                        <p>Username</p>
+                        <input type="text" required name="username" placeholder="Nhập username...">
+                    </div>
+                    <div class="password">
+                        <p>Mật khẩu</p>
+                        <input type="password" required name="password" placeholder="Nhập mật khẩu...">
+                    </div>
+                    <div class="confirm">
+                        <p style="margin-bottom: 0px;">Xác nhận mật khẩu</p>
+                        <input type="password" required name="confirm" placeholder="Nhập lại mật khẩu...">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex btn">
+            <div class=" flex col50 c1">
+                <a href="/" class="first">Hủy</a>
+            </div>
+            <div class="flex col50 c2">
+                <input type="submit" value="Đăng ký"/>
+            </div>
+
+        </div>
+    </form>
+    <div class="discovery-image">
+        <div class="flex img-items">
+            <div class="img-item">
+                <img src="https://res.cloudinary.com/doaux2ndg/image/upload/v1670076220/FlightMangement/ba-na-hill_becr1i.jpg" alt="BaNa">
+            </div>
+            <div class="img-item">
+                <img src="https://res.cloudinary.com/doaux2ndg/image/upload/v1670076219/FlightMangement/quangbinh_uxa682.jpg" alt="DongPhongNha">
+            </div>
+            <div class="img-item">
+                <img src="https://res.cloudinary.com/doaux2ndg/image/upload/v1670076218/FlightMangement/cantho_vtnymu.jpg" alt="CanTho">
+            </div>
+            <div class="img-item">
+                <img src="https://res.cloudinary.com/doaux2ndg/image/upload/v1670076220/FlightMangement/thanh-pho-da-lat_p3q5ep.jpg" alt="DaLat">
+            </div>
+            <div class="img-item">
+                <img src="https://res.cloudinary.com/doaux2ndg/image/upload/v1670076220/FlightMangement/du-lich-sai-gon-cover_vky9dn.jpg" alt="SaiGon">
+            </div>
+            <div class="img-item">
+                <img src="https://res.cloudinary.com/doaux2ndg/image/upload/v1670076219/FlightMangement/samac_akxnfm.jpg" alt="BinhThuan">
+            </div>
+            <div class="img-item">
+                <img src="https://res.cloudinary.com/doaux2ndg/image/upload/v1670076219/FlightMangement/blog_1_omgyke.jpg" alt="HoiAn">
+            </div>
+            <div class="img-item">
+                <img src="https://res.cloudinary.com/doaux2ndg/image/upload/v1670076221/FlightMangement/phu-quoc_i07loy.jpg" alt="PhuQuoc">
+            </div>
+            <div class="img-item">
+                <img src="https://res.cloudinary.com/doaux2ndg/image/upload/v1670076226/FlightMangement/Sapa_kvfa73.png" alt="Sapa">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    {% if current_user.is_authenticated %}
+        <h1 class="text-info">WELCOM <span class="text-danger">{{ current_user.name }}</span> TO OUR WEBSITE!!!</h1>
+    {% else %}
+        {% block login %}
+            {% include 'login.html' %}
+        {% endblock %}
+    {% endif %}
+
+    {% block content1 %}
+        {% include '/layout/content.html' %}
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="content">
+            <div class="content-header">
+                <i class="fa-solid fa-plane"></i>
+                <span>Chuyến đi </span>
+                <br>
+                <strong>-</strong>
+                <span>" tới "</span>
+                <strong>:</strong>
+            </div>
+            <div class="row">
+<!--                Thông tin kết quả-->
+                <div class="col-sm-8">
+                    <div class="flex selection-rank">
+                        <div class="row">
+                            <div class="col-sm-4">Thông tin chuyến bay</div>
+                            <div class="col-sm-4 rank-1">Hạng 1</div>
+                            <div class="col-sm-4 rank-2">Hạng 2</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flight-selection">
+                        <div>
+                            {% for f in flights %}
+                            <div class="ticket-wrapper">
+                                <div class="ticket-container">
+                                    <a href="#" class="ticket-link">
+                                        <div class="ticket">
+                                            <div class="flex col-8 ticket-info">
+                                                <div class="img-icons">
+                                                    <img src="{{ url_for('static', filename='images/VJ.png') }}"
+                                                         alt="VietJet Air">
+                                                </div>
+                                                <div class="flex tInfo">
+                                                    <div class="flex info_depart">
+                                                        <div class="time">{{ f.departing_at }}</div>
+                                                        <div class="airport"></div>
+                                                    </div>
+                                                    <span>--</span>
+                                                    <div class="flex info_arrive">
+                                                        <div class="time">{{ f.arriving_at }}</div>
+                                                        <div class="airport"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex col-4 price-ticket">
+                                                <button>
+                                                    <div class="bt-content">
+                                                        <span>1,000,000vnd</span>
+                                                    </div>
+                                                </button>
+
+                                                <div class="remaining-seats">
+                                                    <span>Còn 1 ghế</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+<!--                Thông tin quảng cáo hoặc hình ảnh-->
+                <div class="col-sm-4">2 of 2</div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
